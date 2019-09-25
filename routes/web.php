@@ -23,5 +23,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth','admin']], function(){
     Route::resource('admin/products','AdminProductsController');
     Route::resource('admin/categories','AdminCategoriesController');
+    Route::resource('admin/users','AdminUsersController');
 });
+
+
+Route::group(['middleware' => ['auth','moderator']], function(){
+
+});
+
 

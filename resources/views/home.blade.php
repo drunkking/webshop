@@ -18,8 +18,10 @@
 
                     @if(auth()->user()->role->name == 'Admin')
                         <p>Admin je tu</p>
+                        @include('inc.navAdmin')
                     @else 
                         <p>Mars Kuci</p>
+                        @include('inc.navModerator')
                     @endif
                     You are logged in!
                 </div>
