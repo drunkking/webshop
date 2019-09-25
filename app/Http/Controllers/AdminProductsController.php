@@ -1,12 +1,25 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
+
+use App\Http\Requests\ProductRequest;
+use App\Repositories\Interfaces\ProductRepositoryInterface;
+
 use App\Product;
 
-class ProductsController extends Controller
+class AdminProductsController extends Controller
 {
+
+
+    private $productRepository;
+
+    public function __construct(ProductRepositoryInterface $productRepository){
+        $this->productRepository = $productRepository;
+    }
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +27,9 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return view('products.index');
+        $products = $this->productRepository->all();
+        return view('admin.products.index')
+            ->with('products',$products);
     }
 
     /**
@@ -24,7 +39,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        return view('admin.products.create');
     }
 
     /**
@@ -33,9 +48,12 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+
+        $this->productRepository->createProduct($request);
+        return redirect('/admin/products')
+            ->with('success','Product created');
     }
 
     /**
@@ -57,7 +75,10 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = $this->productRepository->withId($id);
+
+        return view('admin.products.edit')
+            ->with('product',$product);
     }
 
     /**
@@ -67,9 +88,12 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        //
+        $this->productRepository->update($request, $id);
+
+        return redirect('admin/products')
+            ->with('success','Product updated');
     }
 
     /**
@@ -80,6 +104,9 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->productRepository->delete($id);
+
+        return redirect('admin/products')
+            ->with('success','Product deleted');
     }
 }
