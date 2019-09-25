@@ -13,19 +13,19 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Options</th>
+                            <th colspan="2">Options</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($categories as $category)
                         <tr>
                             <td>{{$category->name}}</td>
+                            <td><a href="categories/{{$category->id}}/edit" class="btn btn-success">Edit</a></td>
                             <td>
-                                    {!! Form::open(['action' => ['AdminCategoriesController@destroy', $category->id], 'method' => 'POST']) !!}
+                                {!! Form::open(['action' => ['AdminCategoriesController@destroy', $category->id], 'method' => 'POST']) !!}
                                     {{Form::hidden('_method','DELETE')}}
                                     {{Form::submit('Delete',['class' => 'btn btn-danger'])}}
-                                    {!! Form::close() !!}
-                                </td>
+                                {!! Form::close() !!}                          
                             </td>
                         </tr>
                         @endforeach

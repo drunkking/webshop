@@ -5,7 +5,7 @@
 <div class="row justify-content-center">
     <div class="col-lg-7">
     <h2>Create</h2>              
-    {!! Form::open(['action' => 'AdminProductsController@store', 'method' => 'POST']) !!}
+    {!! Form::open(['action' => 'ModeratorProductsController@store', 'method' => 'POST']) !!}
         <div class="form-group">
             {{Form::label('name','Name')}}
             {{Form::text('name','',['class' => 'form-control'])}}

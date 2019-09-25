@@ -8,9 +8,10 @@
     {!! Form::open(['action' => ['AdminCategoriesController@update', $category->id], 'method' => 'POST']) !!}
         <div class="form-group">
             {{Form::label('name','Name')}}
-            {{Form::text('name','',['class' => 'form-control'])}}
+            {{Form::text('name',$category->name,['class' => 'form-control'])}}
         </div>
 
+        @method('PUT')
         {{Form::submit('Save',['class' => 'btn btn-primary'])}}
     {!! Form::close() !!}
     </div>

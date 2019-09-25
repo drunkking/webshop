@@ -5,7 +5,7 @@
 <div class="row justify-content-center">
     <div class="col-lg-7">
     <h2>Edit</h2>              
-    {!! Form::open(['action' => ['AdminProductsController@update',$product->id], 'method' => 'POST']) !!}
+    {!! Form::open(['action' => ['ModeratorProductsController@update',$product->id], 'method' => 'POST']) !!}
         <div class="form-group">
             {{Form::label('name','Name')}}
             {{Form::text('name',$product->name,['class' => 'form-control'])}}
@@ -20,7 +20,7 @@
             {{Form::label('category','Category')}}
             {{Form::select('category_id',[]+$categories,null,['class' => 'form-control'])}}
         </div>
-    
+
         <div class="form-group">
             {{Form::label('description','Description')}}
             {{Form::textarea('description',$product->description,['class' => 'form-control'])}}

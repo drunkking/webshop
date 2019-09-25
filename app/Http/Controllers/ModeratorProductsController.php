@@ -1,26 +1,21 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Repositories\Interfaces\ProductRepositoryInterface;
 use App\Repositories\Interfaces\CategoryRepositoryInterface;
 
-use App\Product;
-
-class AdminProductsController extends Controller
+class ModeratorProductsController extends Controller
 {
 
-
     private $productRepository;
-    private $categoryRepository;
 
     public function __construct(ProductRepositoryInterface $productRepository,
                                 CategoryRepositoryInterface $categoryRepository){
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
     }
-
-
 
     /**
      * Display a listing of the resource.
@@ -30,7 +25,7 @@ class AdminProductsController extends Controller
     public function index()
     {
         $products = $this->productRepository->all();
-        return view('admin.products.index')
+        return view('moderator.products.index')
             ->with('products',$products);
     }
 
@@ -42,7 +37,7 @@ class AdminProductsController extends Controller
     public function create()
     {
         $categories = $this->categoryRepository->forDisplay();
-        return view('admin.products.create')
+        return view('moderator.products.create')
             ->with('categories', $categories);
     }
 
@@ -54,9 +49,8 @@ class AdminProductsController extends Controller
      */
     public function store(ProductRequest $request)
     {
-
         $this->productRepository->createProduct($request);
-        return redirect('/admin/products')
+        return redirect('/moderator/products')
             ->with('success','Product created');
     }
 
@@ -82,7 +76,7 @@ class AdminProductsController extends Controller
         $categories = $this->categoryRepository->forDisplay();
         $product = $this->productRepository->withId($id);
 
-        return view('admin.products.edit')
+        return view('moderator.products.edit')
             ->with('product',$product)
             ->with('categories', $categories);
     }
@@ -98,7 +92,7 @@ class AdminProductsController extends Controller
     {
         $this->productRepository->update($request, $id);
 
-        return redirect('admin/products')
+        return redirect('moderator/products')
             ->with('success','Product updated');
     }
 
@@ -112,7 +106,7 @@ class AdminProductsController extends Controller
     {
         $this->productRepository->delete($id);
 
-        return redirect('admin/products')
+        return redirect('moderator/products')
             ->with('success','Product deleted');
     }
 }

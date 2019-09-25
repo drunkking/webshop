@@ -28,10 +28,10 @@
                             <td>{{$product->price}}</td>
                             <td><a href="products/{{$product->id}}/edit" class="btn btn-success">Edit</a></td>
                             <td>
-                                {!! Form::open(['action' => ['AdminProductsController@destroy', $product->id], 'method' => 'POST']) !!}
+                                {!! Form::open(['action' => ['ModeratorProductsController@destroy', $product->id], 'method' => 'POST']) !!}
                                     {{Form::hidden('_method','DELETE')}}
                                     {{Form::submit('Delete',['class' => 'btn btn-danger'])}}
-                                {!! Form::close() !!}               
+                                {!! Form::close() !!}
                             </td>
                         </tr>
                         @endforeach

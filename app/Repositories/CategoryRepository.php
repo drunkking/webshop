@@ -11,6 +11,10 @@ class CategoryRepository implements CategoryRepositoryInterface {
         return Category::orderBy('created_at','desc')->get();
     }
 
+    public function forDisplay(){
+        return Category::pluck('name','id')->toArray();
+    }
+
     public function createCategory($request){
         
         Category::create([
@@ -22,7 +26,7 @@ class CategoryRepository implements CategoryRepositoryInterface {
 
         $category = Category::findOrFail($category_id);
 
-        $category_id->update([
+        $category->update([
             'name' => $request->input('name')
         ]);
     }
