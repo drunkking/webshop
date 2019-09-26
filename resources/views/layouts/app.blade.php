@@ -30,6 +30,8 @@
             @yield('content')
         </main>
         </div>
+
+        @include('inc.cartModal')
     </div>
 </body>
 </html>
