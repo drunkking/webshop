@@ -17,6 +17,9 @@ use App\Repositories\Interfaces\RoleRepositoryInterface;
 use App\Repositories\CartRepository;
 use App\Repositories\Interfaces\CartRepositoryInterface;
 
+use App\Repositories\OrderRepository;
+use App\Repositories\Interfaces\OrderRepositoryInterface;
+
 
 use Illuminate\Support\ServiceProvider;
 
@@ -53,6 +56,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             CartRepositoryInterface::class, 
             CartRepository::class
+        );
+
+        $this->app->bind(
+            OrderRepositoryInterface::class, 
+            OrderRepository::class
         );
     }
 

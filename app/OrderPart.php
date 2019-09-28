@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderPart extends Model
 {
+    protected $guarded = [];
+
     public function order(){
         return $this->belongsTo('App\Order');
     }
