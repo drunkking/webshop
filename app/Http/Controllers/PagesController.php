@@ -33,4 +33,8 @@ class PagesController extends Controller
             ->with('cart',$cart)
             ->with('topay',$toPay);
     }
+
+    public function dash(){
+        return view('dash');
+    }
 }

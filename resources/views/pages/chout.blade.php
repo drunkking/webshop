@@ -25,14 +25,14 @@
                         <td>{{$item['price'] * $item['quantity']}}</td>
                         <td>
                             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">                    
-                            {!! Form::open(['action' => 'AdminCartsController@store',  'method'=>'POST']) !!}
+                            {!! Form::open(['action' => 'CartsController@store',  'method'=>'POST']) !!}
                                 <input type="hidden" name="product_id" value="{{$item['product_id']}}"></input>
                                 <input type="hidden" name="price" value="{{$item['price']}}"></input>
                                 <input type="hidden" name="name" value="{{$item['name']}}"></input>
                             {{Form::submit('Add',['class' => 'btn btn-success'])}}
                             {!! Form::close() !!}  
 
-                            {!! Form::open(['action' => 'AdminCartsController@change',  'method'=>'POST']) !!}
+                            {!! Form::open(['action' => 'CartsController@change',  'method'=>'POST']) !!}
                                   <input type="hidden" name="product_id" value="{{$item['product_id']}}"></input>
                                 {{Form::submit('Remove',['class' => 'btn btn-danger'])}}
                             {!! Form::close() !!}  

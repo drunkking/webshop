@@ -13,6 +13,7 @@
 
 Route::get('/','PagesController@index');
 
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -20,6 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth']], function(){
     Route::get('/chout','PagesController@chout');
     Route::resource('orders', 'OrdersController');
+    Route::resource('carts', 'CartsController');
+    Route::post('carts/storeHome', 'CartsController@storeHome');
+    Route::post('carts/change','CartsController@change');
 });
 
 
@@ -27,9 +31,8 @@ Route::group(['middleware' => ['auth','admin']], function(){
     Route::resource('admin/products','AdminProductsController');
     Route::resource('admin/categories','AdminCategoriesController');
     Route::resource('admin/users','AdminUsersController');
-    Route::resource('admin/carts', 'AdminCartsController');
-    Route::post('admin/carts/storeHome', 'AdminCartsController@storeHome');
-    Route::post('admin/carts/change','AdminCartsController@change');
+    Route::resource('admin/orders', 'AdminOrdersController');
+
 });
 
 
@@ -37,6 +40,12 @@ Route::group(['middleware' => ['auth','moderator']], function(){
     Route::resource('moderator/products','ModeratorProductsController');
     Route::resource('moderator/categories','ModeratorCategoriesController');
     Route::resource('moderator/users','ModeratorUsersController');                        
+});
+
+
+Route::group(['middleware' => ['auth','customer']], function(){
+    Route::get('customer/orders','CustomersController@orders');  
+    Route::get('customer/profile','CustomersController@profile');  
 });
 
 

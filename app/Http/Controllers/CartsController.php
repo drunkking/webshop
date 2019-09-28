@@ -8,7 +8,7 @@ use App\Http\Requests\CartRemoveRequest;
 use App\Repositories\Interfaces\CartRepositoryInterface;
 use Session;
 
-class AdminCartsController extends Controller
+class CartsController extends Controller
 {
 
     private $cartRepository;

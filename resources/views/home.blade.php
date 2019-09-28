@@ -17,12 +17,18 @@
                     {{$role}}
 
                     @if(auth()->user()->role->name == 'Admin')
-                        <p>Admin je tu</p>
-                        @include('inc.navAdmin')
-                    @else 
-                        <p>Mars Kuci</p>
+                        @include('inc.navAdmin')      
+                    @endif
+
+                    @if(auth()->user()->role->name == 'Moderator')
                         @include('inc.navModerator')
                     @endif
+
+                    @if(auth()->user()->role->name == 'Customer')
+                        @include('inc.navCustomer')
+                    @endif
+
+
                     You are logged in!
                 </div>
             </div>

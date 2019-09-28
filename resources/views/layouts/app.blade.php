@@ -17,7 +17,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -26,9 +28,10 @@
 
         <div class="container">
             @include('inc.messages')
-        <main class="py-4">
-            @yield('content')
-        </main>
+
+            <main class="py-4">
+                @yield('content')
+            </main>
         </div>
 
         @include('inc.cartModal')
