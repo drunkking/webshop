@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+
 use App\OrderPart;
 use App\Order;
 use Session;
@@ -32,6 +32,6 @@ class OrdersController extends Controller
         Session::put('auth()->user()->id', []);  
 
         return redirect('/')
-        ->with('success','GOOD');
+            ->with('success','GOOD');
     }
 }
