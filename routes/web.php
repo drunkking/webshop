@@ -44,8 +44,7 @@ Route::group(['middleware' => ['auth','moderator']], function(){
 
 
 Route::group(['middleware' => ['auth','customer']], function(){
-    Route::get('customer/orders','CustomersController@orders');  
-    Route::get('customer/profile','CustomersController@profile');  
+    Route::resource('customers', 'CustomersController');  
 });
 
 
