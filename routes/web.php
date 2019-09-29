@@ -39,7 +39,8 @@ Route::group(['middleware' => ['auth','admin']], function(){
 Route::group(['middleware' => ['auth','moderator']], function(){
     Route::resource('moderator/products','ModeratorProductsController');
     Route::resource('moderator/categories','ModeratorCategoriesController');
-    Route::resource('moderator/users','ModeratorUsersController');                        
+    Route::resource('moderator/users','ModeratorUsersController'); 
+    Route::resource('moderator/orders','ModeratorOrdersController');                       
 });
 
 

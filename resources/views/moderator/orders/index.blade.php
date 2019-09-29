@@ -20,7 +20,7 @@
             <td>delivered</td>
             <td>{{$order->updated_at->diffForHumans()}}</td>
             <td><a href="" class="btn btn-success">Approve</a></td>
-            <td><a href="/admin/orders/{{$order->id}}" class="btn btn-info">Show</a></td>
+            <td><a href="/moderator/orders/{{$order->id}}" class="btn btn-info">Show</a></td>
             <td><a href="" class="btn btn-danger">Remove</a></td>
         </tr>
         @endforeach

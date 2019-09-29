@@ -1,16 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Repositories\Interfaces\OrderRepositoryInterface;
-
 use Illuminate\Http\Request;
 
-use App\User;
-
-
-class CustomersController extends Controller
+class ModeratorOrdersController extends Controller
 {
+
     private $orderRepository;
 
     public function __construct(OrderRepositoryInterface $orderRepository){
@@ -24,21 +20,10 @@ class CustomersController extends Controller
      */
     public function index()
     {
-
-        $orders = $this->orderRepository->customerOrders(auth()->user()->id);
-
-        return view('customers.index')
-            ->with('orders', $orders);
+        $orders = $this->orderRepository->all();
+        return view('moderator.orders.index')
+            ->with('orders',$orders);
     }
-
-    public function customerOrder($id)
-    {
-        $data = $this->orderRepository->customerOrderDetails($id);
-
-        return view('customers.show', $data);
-    }
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -69,7 +54,8 @@ class CustomersController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = $this->orderRepository->customerOrderDetails($id);
+        return view('moderator.orders.show', $data);
     }
 
     /**
@@ -80,15 +66,7 @@ class CustomersController extends Controller
      */
     public function edit($id)
     {
-
-        if(auth()->user()->id != $id){
-            abort(404);
-        } else {
-            $user = User::findOrFail($id);
-        }
-
-        return view('customers.edit')
-            ->with('user', $user);
+        //
     }
 
     /**
@@ -100,19 +78,7 @@ class CustomersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-
-        
-        $user->update([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'address' => $request->input('address'),
-            'city' => $request->input('city'),
-            'zip_code' => $request->input('zip_code'),
-            'phone' => $request->input('phone')
-        ]);
-
-        return redirect('/home');
+        //
     }
 
     /**

@@ -1,13 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Repositories\Interfaces\OrderRepositoryInterface;
 use Illuminate\Http\Request;
 
-use App\Order;
 
 class AdminOrdersController extends Controller
 {
+
+    private $orderRepository;
+
+    public function __construct(OrderRepositoryInterface $orderRepository){
+        $this->orderRepository = $orderRepository;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +22,7 @@ class AdminOrdersController extends Controller
      */
     public function index()
     {
-        $orders = Order::orderBy('created_at','desc')->paginate(10);
+        $orders = $this->orderRepository->all();
         return view('admin.orders.index')
             ->with('orders',$orders);
     }
@@ -49,7 +56,8 @@ class AdminOrdersController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = $this->orderRepository->customerOrderDetails($id);
+        return view('admin.orders.show', $data);
     }
 
     /**
