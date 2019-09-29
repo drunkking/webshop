@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Order;
+use App\OrderPart;
 use App\User;
 
 class CustomersController extends Controller
@@ -23,6 +24,16 @@ class CustomersController extends Controller
 
         return view('customers.index')
             ->with('orders', $orders);
+    }
+
+    public function customerOrder($id){
+
+        $order = Order::findOrFail($id);
+        $orderParts = OrderPart::where('order_id',$order->id)->get();
+
+        return view('customers.show')
+            ->with('order',$order)
+            ->with('orderParts',$orderParts);
     }
 
 
@@ -67,7 +78,13 @@ class CustomersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
+
+        if(auth()->user()->id != $id){
+            abort(404);
+        } else {
+            $user = User::findOrFail($id);
+        }
+
         return view('customers.edit')
             ->with('user', $user);
     }
