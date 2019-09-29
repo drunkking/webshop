@@ -2,6 +2,8 @@
 
 @section('content')
 
+
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -16,7 +18,7 @@
         @foreach ($orders as $order)
         <tr>
             <td>{{$order->id}}</td>
-            <td><a href="">About user</a></td>
+            <td><a href="/admin/users/{{$order->user_id}}">{{$order->user->name}}</a></td>
             <td>delivered</td>
             <td>{{$order->updated_at->diffForHumans()}}</td>
             <td><a href="" class="btn btn-success">Approve</a></td>

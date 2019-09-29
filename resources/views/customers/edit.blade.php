@@ -27,6 +27,11 @@
     </div>
 
     <div class="form-group">
+        {{Form::label('zip_code','Zip Code')}}
+        {{Form::text('zip_code',$user->zip_code,['class' => 'form-control'])}}
+    </div>
+
+    <div class="form-group">
         {{Form::label('phone','Phone')}}
         {{Form::text('phone',$user->phone,['class' => 'form-control'])}}
     </div>

@@ -46,7 +46,11 @@ class UserRepository implements UserRepositoryInterface {
         $user->update([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'role_id' => $request->input('role_id')
+            'role_id' => $request->input('role_id'),
+            'address' => $request->input('address'),
+            'city' => $request->input('city'),
+            'zip_code' => $request->input('zip_code'),
+            'phone' => $request->input('phone')
         ]);
 
     }
@@ -59,7 +63,11 @@ class UserRepository implements UserRepositoryInterface {
         
         $user->update([
             'name' => $request->input('name'),
-            'email' => $request->input('email')
+            'email' => $request->input('email'),
+            'address' => $request->input('address'),
+            'city' => $request->input('city'),
+            'zip_code' => $request->input('zip_code'),
+            'phone' => $request->input('phone')
         ]);
 
     }

@@ -7,6 +7,8 @@ interface OrderRepositoryInterface {
    
     public function all();
 
+    public function allWithUsers();
+
     public function saveTheOrder();
 
     public function customerOrders($customer_id);

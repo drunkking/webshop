@@ -22,7 +22,7 @@ class AdminOrdersController extends Controller
      */
     public function index()
     {
-        $orders = $this->orderRepository->all();
+        $orders = $this->orderRepository->allWithUsers();
         return view('admin.orders.index')
             ->with('orders',$orders);
     }

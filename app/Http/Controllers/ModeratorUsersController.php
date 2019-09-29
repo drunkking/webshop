@@ -68,7 +68,9 @@ class ModeratorUsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = $this->userRepository->withCustomerId($id);
+        return view('moderator.users.show')
+            ->with('user',$user);
     }
 
     /**

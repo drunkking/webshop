@@ -21,6 +21,17 @@ class OrderRepository implements OrderRepositoryInterface {
         return Order::orderBy('created_at','desc')->paginate(10);
     }
 
+    public function allWithUsers(){
+
+        $orders = Order::orderBy('created_at','desc')->paginate(10);
+
+        foreach($orders as $order){
+            $order['user'] = User::findOrFail($order->user_id);
+        }
+        
+        return $orders;
+    }
+
     public function saveTheOrder(){
 
         $cart = Session::get('auth()->user()->id');
@@ -52,6 +63,7 @@ class OrderRepository implements OrderRepositoryInterface {
 
     public function customerOrderDetails($customer_id){
 
+
         $order = Order::findOrFail($customer_id);
         $orderParts = OrderPart::where('order_id',$order->id)->get();
         $toPay = 0;
@@ -65,7 +77,6 @@ class OrderRepository implements OrderRepositoryInterface {
         }
 
     
-
         $orderDetails = [
             'order' => $order,
             'orderParts' => $orderParts,

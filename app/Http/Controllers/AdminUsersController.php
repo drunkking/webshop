@@ -66,7 +66,9 @@ class AdminUsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = $this->userRepository->withId($id);
+        return view('admin.users.show')
+            ->with('user',$user);
     }
 
     /**
