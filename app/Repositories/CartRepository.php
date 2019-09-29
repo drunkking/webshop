@@ -52,7 +52,7 @@ class CartRepository implements CartRepositoryInterface {
             if($currData[$key]['product_id'] == $data['product_id']){
 
                 if($currData[$key]['quantity'] == 1){
-                  unset($currData[$key]);    
+                    unset($currData[$key]);    
                 } else {
                     $currData[$key]['quantity'] -= 1;
                 } 

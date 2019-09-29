@@ -54,14 +54,22 @@ class OrderRepository implements OrderRepositoryInterface {
 
         $order = Order::findOrFail($customer_id);
         $orderParts = OrderPart::where('order_id',$order->id)->get();
+        $toPay = 0;
 
         foreach($orderParts as $part){
             $part['product'] = Product::findOrFail($part->product_id);
         }
 
+        foreach($orderParts as $part){
+            $toPay += $part->product->price * $part->quantity;
+        }
+
+    
+
         $orderDetails = [
             'order' => $order,
-            'orderParts' => $orderParts
+            'orderParts' => $orderParts,
+            'topay' => $toPay
         ];
 
         return $orderDetails;
