@@ -20,6 +20,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function(){
     Route::get('/chout','PagesController@chout');
+    Route::get('/categories/{category_name}','PagesController@productsWithCategory');
     Route::resource('orders', 'OrdersController');
     Route::resource('carts', 'CartsController');
     Route::post('carts/storeHome', 'CartsController@storeHome');

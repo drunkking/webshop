@@ -25,8 +25,6 @@
                         <h3>Phone: <span class="badge badge-info">{{$user->phone}}</span></h3>  
                     </li>
                   </ul>
-
-    
          </div>
     </div>
     

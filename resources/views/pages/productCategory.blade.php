@@ -13,6 +13,7 @@
 @include('inc.navCategory')
 <h1>Buy Our products</h1>
 <div class="row justify-content-center">
+   
         
             @if(isset($products))
 

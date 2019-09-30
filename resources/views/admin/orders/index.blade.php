@@ -23,7 +23,12 @@
             <td>{{$order->updated_at->diffForHumans()}}</td>
             <td><a href="" class="btn btn-success">Approve</a></td>
             <td><a href="/admin/orders/{{$order->id}}" class="btn btn-info">Show</a></td>
-            <td><a href="" class="btn btn-danger">Remove</a></td>
+            <td>
+                {!! Form::open(['action'=> ['AdminOrdersController@destroy',$order->id], 'method' => 'POST']) !!}
+                    @method('DELETE')
+                    {{Form::submit('Remove',['class' => 'btn btn-danger'])}}
+                {!! Form::close() !!}
+            </td>
         </tr>
         @endforeach
     </tbody>

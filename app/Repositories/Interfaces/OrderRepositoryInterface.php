@@ -14,4 +14,6 @@ interface OrderRepositoryInterface {
     public function customerOrders($customer_id);
 
     public function customerOrderDetails($customer_id);
+
+    public function delete($order_id);
 }

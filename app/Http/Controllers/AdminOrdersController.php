@@ -91,6 +91,9 @@ class AdminOrdersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->orderRepository->delete($id);
+
+        return redirect('/admin/orders')
+            ->with('success','Deleted');
     }
 }

@@ -13,5 +13,8 @@ interface ProductRepositoryInterface {
 
     public function withId($product_id);
 
+    public function productsWithCategory($category_id);
+
     public function delete($product_id);
+
 }

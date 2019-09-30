@@ -85,4 +85,14 @@ class OrderRepository implements OrderRepositoryInterface {
 
         return $orderDetails;
     }
+
+
+    public function delete($order_id){
+
+        $parts = OrderPart::where('order_id', $order_id);
+        $parts->delete();
+
+        $order = Order::where('id',$order_id);
+        $order->delete();
+    }
 }
