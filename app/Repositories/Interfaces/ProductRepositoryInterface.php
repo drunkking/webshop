@@ -7,6 +7,10 @@ interface ProductRepositoryInterface {
     
     public function all();
 
+    public function imageCreateSetup($request);
+
+    public function imageUpdateSetup($request);
+
     public function createProduct($request);
 
     public function update($request, $product_id);

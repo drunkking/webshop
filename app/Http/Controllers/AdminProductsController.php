@@ -5,6 +5,7 @@ use App\Http\Requests\ProductRequest;
 use App\Repositories\Interfaces\ProductRepositoryInterface;
 use App\Repositories\Interfaces\CategoryRepositoryInterface;
 
+use Illuminate\Support\Facades\Storage;
 use App\Product;
 
 class AdminProductsController extends Controller
@@ -96,7 +97,12 @@ class AdminProductsController extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
+        $product = Product::findOrFail($id);
+        $oldProductImageName = $product->image;
+
         $this->productRepository->update($request, $id);
+        Storage::delete('public/product_images/'.$oldProductImageName);
+
 
         return redirect('admin/products')
             ->with('success','Product updated');

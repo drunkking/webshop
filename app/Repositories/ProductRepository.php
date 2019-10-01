@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 use App\Repositories\Interfaces\ProductRepositoryInterface;
+use Illuminate\Support\Facades\Storage;
 use App\Product;
 use App\Category;
 
@@ -13,33 +14,78 @@ class ProductRepository implements ProductRepositoryInterface {
         return Product::orderBy('created_at','desc')->get();
     }
 
+    public function imageCreateSetup($request){
+
+        if($request->hasFile('image')){
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+
+            $path = $request->file('image')->storeAs('public/product_images', $fileNameToStore);
+        } else {
+            $fileNameToStore = 'empty.jpg';
+        }
+
+        return $fileNameToStore;
+    }
+
+    public function imageUpdateSetup($request){
+
+        if($request->hasFile('image')){
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+
+            $path = $request->file('image')->storeAs('public/product_images', $fileNameToStore);
+
+
+            return $fileNameToStore;
+        } 
+    }
+
+
     public function createProduct($request){
+
+        $fileNameToStore = $this->imageCreateSetup($request);
 
         Product::create([
             'name' => $request->input('name'),
             'vendor' => $request->input('vendor'),
             'description' => $request->input('description'),
+            'image' => $fileNameToStore,
+            'category_id' => $request->input('category_id'),
             'price' => $request->input('price')
         ]);
+
     }
 
     public function update($request, $product_id){
 
         $product = Product::findOrFail($product_id);
+        $fileNameToStore = $this->imageUpdateSetup($request);
+
+        
 
         $product->update([
             'name' => $request->input('name'),
             'vendor' => $request->input('vendor'),
             'description' => $request->input('description'),
+            'image' => $request->hasFile('image') ? $fileNameToStore : $product->image,
             'category_id' => $request->input('category_id'),
             'price' => $request->input('price')
         ]);
+
     }
 
     public function withId($product_id) {
 
         return Product::findOrFail($product_id);
     }
+
 
     
 
@@ -66,6 +112,11 @@ class ProductRepository implements ProductRepositoryInterface {
     public function delete($product_id){
 
         $product = Product::findOrFail($product_id);
+
+        if($product->image != 'empty.jpg'){
+            Storage::delete('public/product_images/'.$product->image);
+        }
+
         $product->delete();
     }
 }

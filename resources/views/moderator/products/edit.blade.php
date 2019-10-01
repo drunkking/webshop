@@ -5,7 +5,7 @@
 <div class="row justify-content-center">
     <div class="col-lg-7">
     <h2>Edit</h2>              
-    {!! Form::open(['action' => ['ModeratorProductsController@update',$product->id], 'method' => 'POST']) !!}
+    {!! Form::open(['action' => ['ModeratorProductsController@update',$product->id], 'method' => 'POST', 'enctype'=>'multipart/form-data']) !!}
         <div class="form-group">
             {{Form::label('name','Name')}}
             {{Form::text('name',$product->name,['class' => 'form-control'])}}
@@ -19,6 +19,17 @@
         <div class="form-group">
             {{Form::label('category','Category')}}
             {{Form::select('category_id',[]+$categories,null,['class' => 'form-control'])}}
+        </div>
+
+        <div class="form-group">
+            {{Form::label('curr_img','Current Image')}}
+            <br>
+            <img src="/storage/product_images/{{$product->image}}" class="img img-fluid" width="350px">
+        </div>
+    
+        <div class="form-group">
+            {{Form::label('img','Image')}}
+            {{Form::file('image')}}
         </div>
 
         <div class="form-group">

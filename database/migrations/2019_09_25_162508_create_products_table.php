@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('vendor');
             $table->mediumText('description');
+            $table->string('image');
             $table->integer('price');
             $table->integer('category_id')->nullable();
             $table->timestamps();

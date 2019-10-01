@@ -6,6 +6,9 @@ use App\Http\Requests\ProductRequest;
 use App\Repositories\Interfaces\ProductRepositoryInterface;
 use App\Repositories\Interfaces\CategoryRepositoryInterface;
 
+use Illuminate\Support\Facades\Storage;
+use App\Product;
+
 class ModeratorProductsController extends Controller
 {
 
@@ -90,7 +93,11 @@ class ModeratorProductsController extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
+        $product = Product::findOrFail($id);
+        $oldProductImageName = $product->image;
+
         $this->productRepository->update($request, $id);
+        Storage::delete('public/product_images/'.$oldProductImageName);
 
         return redirect('moderator/products')
             ->with('success','Product updated');

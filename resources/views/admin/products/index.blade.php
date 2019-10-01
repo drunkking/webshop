@@ -12,7 +12,9 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Name</th>
+                            <th>Image</th>
                             <th>Vendor</th>
                             <th>Description</th>
                             <th>Price</th>
@@ -22,7 +24,9 @@
                     <tbody>
                         @foreach ($products as $product)
                         <tr>
+                            <td>{{$product->id}}</td>
                             <td>{{$product->name}}</td>
+                            <td><img src="/storage/product_images/{{$product->image}}" class="img" width="120px" height="100px"></td>
                             <td>{{$product->vendor}}</td>
                             <td>{{$product->description}}</td>
                             <td>{{$product->price}}</td>
