@@ -7,9 +7,8 @@
         <tr>
             <th>ID</th>
             <th>Customer</th>
-            <th>Status</th>
             <th>Createad at</th>
-            <th colspan="3" class="text-center">Options</th>
+            <th colspan="2" class="text-center">Options</th>
         </tr>
     </thead>
     <tbody>
@@ -17,9 +16,7 @@
         <tr>
             <td>{{$order->id}}</td>
             <td><a href="/moderator/users/{{$order->user_id}}">{{$order->user->name}}</a></td>
-            <td>delivered</td>
             <td>{{$order->updated_at->diffForHumans()}}</td>
-            <td><a href="" class="btn btn-success">Approve</a></td>
             <td><a href="/moderator/orders/{{$order->id}}" class="btn btn-info">Show</a></td>
             <td><a href="" class="btn btn-danger">Remove</a></td>
         </tr>

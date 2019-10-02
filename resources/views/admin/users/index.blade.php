@@ -37,6 +37,7 @@
                 @endif
             </tr>
         </table>
+        {{$users->links()}}
       
     </div>
 </div>

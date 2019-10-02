@@ -6,8 +6,8 @@
     <div class="row justify-content-center">
         <div class="col-lg-10">
                 <h2>All categories</h2>
-
-
+                <a href="categories/create" class="btn btn-primary">Create Category</a>
+                <hr>
             @if(!empty($categories))
                 <table class="table table-striped">
                     <thead>

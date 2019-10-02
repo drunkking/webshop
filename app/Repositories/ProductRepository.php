@@ -11,7 +11,7 @@ class ProductRepository implements ProductRepositoryInterface {
 
     public function all(){
 
-        return Product::orderBy('created_at','desc')->get();
+        return Product::orderBy('created_at','desc')->paginate(10);
     }
 
     public function imageCreateSetup($request){

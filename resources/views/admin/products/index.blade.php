@@ -40,7 +40,9 @@
                         </tr>
                         @endforeach
                     </tbody>
-               </table>          
+               </table> 
+               
+               {{$products->links()}}
             @else 
                 <h4>No products, yet</h4>
             @endif

@@ -17,7 +17,9 @@
                 <td>in process</td>
                 <td>{{$order->created_at}}</td>
             </tr>
-
+            <tr>
+                <td>Message: {{$order->message}}</td>
+            </tr>
         </tbody>
     </table>
 <hr>

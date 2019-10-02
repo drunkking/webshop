@@ -15,6 +15,8 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('status')->default(1)->unsinged();
+            $table->mediumText('message')->nullable();
             $table->integer('user_id');
             $table->timestamps();
         });

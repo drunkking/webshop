@@ -23,12 +23,15 @@ class PagesController extends Controller
     public function index(){
         
         $cart = Session::get('auth()->user()->id');
+
+        
         $products = Product::orderBy('created_at','desc')->paginate(10);
         $categories = Category::all();
 
         return view('pages.index')
             ->with('products',$products)
             ->with('categories', $categories)
+
             ->with('cart', $cart);
     }
 
@@ -47,9 +50,14 @@ class PagesController extends Controller
         $cart = Session::get('auth()->user()->id');
         $toPay = 0;
 
-        foreach($cart as $key => $value){
-            $toPay += $cart[$key]['price'] * $cart[$key]['quantity'];
+        if(isset($cart)){
+
+            foreach($cart as $key => $value){
+                $toPay += $cart[$key]['price'] * $cart[$key]['quantity'];
+            }
+
         }
+
 
         return view('pages.chout')
             ->with('cart',$cart)

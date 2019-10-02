@@ -21,6 +21,7 @@
                                 <div class="card-header">
                                     <input type="hidden" name="product_id" value="{{$product->id}}"></input>
                                     <input type="hidden" name="name" value="{{$product->name}}"></input>
+                                    <input type="hidden" name="image" value="{{$product->image}}"></input>
                                     {{$product->name}}
                                 </div>
                                 <img src="/storage/product_images/{{$product->image}}" class="card-img-top" alt="..."  height="230px">

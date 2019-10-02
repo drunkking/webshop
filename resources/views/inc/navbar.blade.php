@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-                <a href="" class="nav-link" data-toggle="modal" data-target="#exampleModal">Cart</a>
+                <a href="" class="nav-link" data-toggle="modal" data-target="#exampleModal" style="font-size:19px;">Cart</a>
             </ul>
 
             <!-- Right Side Of Navbar -->

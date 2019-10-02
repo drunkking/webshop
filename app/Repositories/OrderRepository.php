@@ -32,13 +32,14 @@ class OrderRepository implements OrderRepositoryInterface {
         return $orders;
     }
 
-    public function saveTheOrder(){
+    public function saveTheOrder($request){
 
         $cart = Session::get('auth()->user()->id');
  
 
         $order = Order::create([
-            'user_id' => auth()->user()->id
+            'user_id' => auth()->user()->id,
+            'message' => $request->input('message')
         ]);
 
 

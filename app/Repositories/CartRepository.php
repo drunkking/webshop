@@ -14,6 +14,7 @@ class CartRepository implements CartRepositoryInterface {
         $data = [
             'product_id' => $request->input('product_id'),
             'name' => $request->input('name'),
+            'image' => $request->input('image'),
             'user_id' => auth()->user()->id,
             'price' => $request->input('price'),
             'quantity' => 1

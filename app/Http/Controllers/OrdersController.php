@@ -19,7 +19,7 @@ class OrdersController extends Controller
     public function store(Request $request)
     {
 
-        $this->orderRepository->saveTheOrder();
+        $this->orderRepository->saveTheOrder($request);
         return redirect('/')
             ->with('success','GOOD');
     }

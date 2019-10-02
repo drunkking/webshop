@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row justify-content-center">
-    <div class="col-lg-8">
+    <div class="col-lg-9">
         @if(!empty($cart))
         
         <table class="table table-dark">
@@ -19,7 +19,9 @@
                   
                     <tr>
                         <td>{{$item['product_id']}}</td>
-                        <td>image</td>
+                        <td>
+                            <img src="/storage/product_images/{{$item['image']}}" alt="..."  width="50px" height="50px">
+                        </td>
                         <td>{{$item['name']}}</td>
                         <td>{{$item['quantity']}}</td>
                         <td>{{$item['price'] * $item['quantity']}}</td>

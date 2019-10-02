@@ -86,7 +86,7 @@ class UserRepository implements UserRepositoryInterface {
 
         //TODO: write methods to check this, don't use magic numbers  bool isOk();
         if($user->role_id  == 1 || $user->role_id == 2 ){
-            return abort('404');
+            return abort(403);
         } else {
             return $user;
         }
