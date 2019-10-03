@@ -4,7 +4,7 @@
 @section('content')
 
     <div class="row justify-content-center">
-        <div class="col-lg-10">
+        <div class="col-lg-12">
             <h2>All products</h2>
             <a href="products/create" class="btn btn-primary">Create Product</a>
             <hr>
@@ -14,6 +14,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
+                            <th>Image</th>
                             <th>Vendor</th>
                             <th>Description</th>
                             <th>Price</th>
@@ -27,7 +28,7 @@
                             <td>{{$product->name}}</td>
                             <td><img src="/storage/product_images/{{$product->image}}" class="img" width="120px" height="100px"></td>
                             <td>{{$product->vendor}}</td>
-                            <td>{{$product->description}}</td>
+                            <td>{{ substr($product->description,0,100).'...'}}</td>
                             <td>{{$product->price}}</td>
                             <td><a href="products/{{$product->id}}/edit" class="btn btn-success">Edit</a></td>
                             <td>

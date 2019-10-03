@@ -21,6 +21,6 @@ class OrdersController extends Controller
 
         $this->orderRepository->saveTheOrder($request);
         return redirect('/')
-            ->with('success','GOOD');
+            ->with('success','Purchase submitted');
     }
 }

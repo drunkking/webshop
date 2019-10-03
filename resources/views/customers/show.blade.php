@@ -7,14 +7,12 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Status</th>
                 <th>Createad at</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>{{$order->id}}</td>
-                <td>in process</td>
                 <td>{{$order->created_at}}</td>
             </tr>
             <tr>

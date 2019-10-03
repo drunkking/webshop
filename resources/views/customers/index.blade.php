@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Users Orders</h1>
+<h1>User Orders</h1>
+
 
 
 <table class="table table-striped">

@@ -18,7 +18,7 @@
 
         <div class="form-group">
             {{Form::label('category','Category')}}
-            {{Form::select('category_id',[''=>'Chose category']+$categories,null,['class' => 'form-control'])}}
+            {{Form::select('category_id',[''=>'Choose category']+$categories,null,['class' => 'form-control'])}}
         </div>
 
         <div class="form-group">
